@@ -15,4 +15,4 @@ train:
   epochs: 3
   learning_rate: 0.001
   # Выбор модели: simple_cnn, resnet18, mobilenet
-  model_type: "simple_cnn"
+  model_type: "mobilenet"

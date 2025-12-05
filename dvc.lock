@@ -62,4 +62,4 @@ stages:
       params.yaml:
         data.current_train_data: data/train
         train.epochs: 3
-        train.model_type: simple_cnn
+        train.model_type: mobilenet
