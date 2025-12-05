@@ -60,6 +60,6 @@ stages:
       size: 4103
     params:
       params.yaml:
-        data.current_train_data: data/train
+        data.current_train_data: data/augmented
         train.epochs: 3
         train.model_type: mobilenet

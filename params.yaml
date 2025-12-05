@@ -9,7 +9,7 @@ data:
   val_path: "data/val"
   augmented_path: "data/augmented"
   # Переключатель: использовать обычные данные ("data/train") или аугментированные ("data/augmented")
-  current_train_data: "data/train"
+  current_train_data: "data/augmented"
 
 train:
   epochs: 3
