@@ -1,0 +1,65 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: 06699bf81c69825e8a26b72618723932.dir
+      size: 241365229
+      nfiles: 3000
+    - path: src/prepare.py
+      hash: md5
+      md5: a16dd3933224de0f36941320e94f629c
+      size: 1564
+    outs:
+    - path: data/train
+      hash: md5
+      md5: ab19de8d14d3b8e1d3836da76c0785d3.dir
+      size: 191354351
+      nfiles: 2400
+    - path: data/val
+      hash: md5
+      md5: f2bbe350833dedd3fb3f24f89726ded0.dir
+      size: 50010878
+      nfiles: 600
+  augment:
+    cmd: python src/augment.py
+    deps:
+    - path: data/train
+      hash: md5
+      md5: ab19de8d14d3b8e1d3836da76c0785d3.dir
+      size: 191354351
+      nfiles: 2400
+    - path: src/augment.py
+      hash: md5
+      md5: 0ab3fe25530ed002f1df5cc6810dd408
+      size: 1746
+    outs:
+    - path: data/augmented
+      hash: md5
+      md5: ed9e5d4dc16397228083fd8b4c41b08d.dir
+      size: 241732858
+      nfiles: 4800
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/train
+      hash: md5
+      md5: ab19de8d14d3b8e1d3836da76c0785d3.dir
+      size: 191354351
+      nfiles: 2400
+    - path: data/val
+      hash: md5
+      md5: f2bbe350833dedd3fb3f24f89726ded0.dir
+      size: 50010878
+      nfiles: 600
+    - path: src/train.py
+      hash: md5
+      md5: bd89fb4688682d9f635ac4fe87d753b4
+      size: 4103
+    params:
+      params.yaml:
+        data.current_train_data: data/train
+        train.epochs: 3
+        train.model_type: simple_cnn
