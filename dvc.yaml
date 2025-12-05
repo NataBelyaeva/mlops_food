@@ -1,0 +1,29 @@
+stages:
+  prepare:
+    cmd: python src/prepare.py
+    deps:
+    - src/prepare.py
+    - data/raw
+    outs:
+    - data/train
+    - data/val
+
+  augment:
+    cmd: python src/augment.py
+    deps:
+    - src/augment.py
+    - data/train
+    outs:
+    - data/augmented
+
+  train:
+    cmd: python src/train.py
+    deps:
+    - src/train.py
+    - data/train
+    - data/val
+    # Мы ставим зависимость от файла параметров, чтобы пайплайн перезапускался при их смене
+    params:
+    - train.model_type
+    - train.epochs
+    - data.current_train_data
